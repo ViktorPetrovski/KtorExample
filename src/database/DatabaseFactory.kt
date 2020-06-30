@@ -21,13 +21,11 @@ object Posts : Table() {
 
 object DatabaseFactory {
     fun init() {
-        // Connect
+        // Connect the DB
         Database.connect(HikariDataSource(dbConfig))
 
         transaction {
             SchemaUtils.create(Posts)
-
-            println("All Posts:")
 
             for (city in Posts.selectAll()) {
                 println("${city[Posts.id]}: ${city[Posts.title]}")
