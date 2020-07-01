@@ -1,14 +1,12 @@
 package post.route
 
 import io.ktor.application.call
-import io.ktor.http.Parameters
 import io.ktor.request.receive
 import io.ktor.response.respond
 import io.ktor.routing.*
 import post.data.PostsRepository
-import post.data.PostsRepositoryImpl
 
-class PostRequest(val description: String)
+data class PostRequest(val description: String)
 
 fun Route.post(repository: PostsRepository) {
     post("/post/create") {
