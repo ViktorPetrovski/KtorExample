@@ -7,6 +7,7 @@ import org.jetbrains.exposed.sql.statements.InsertStatement
 import post.data.model.Post
 import java.lang.IllegalStateException
 import org.jetbrains.exposed.sql.transactions.transaction
+import org.jetbrains.exposed.sql.update
 
 class PostsRepositoryImpl : PostsRepository {
 
@@ -35,7 +36,9 @@ class PostsRepositoryImpl : PostsRepository {
         Posts.select { Posts.id.eq(postId) }.map { Post(it) }.singleOrNull()
     }
 
-    override suspend fun updatePost(postId: String, postDescription: String) {
-        TODO("Not yet implemented")
+    override suspend fun updatePost(postId: Int, postDescription: String) {
+        transaction {
+            Posts.update({ Posts.id.eq(postId) }) { it[title] = postDescription }
+        }
     }
 }
