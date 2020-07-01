@@ -1,6 +1,6 @@
 package post.data
 
-import post.model.Post
+import post.data.model.Post
 
 interface PostsRepository {
     suspend fun createPost(postDescription: String): Post

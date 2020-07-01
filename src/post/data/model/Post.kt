@@ -1,4 +1,4 @@
-package post.model
+package post.data.model
 
 import database.Posts
 import org.jetbrains.exposed.sql.ResultRow
