@@ -19,9 +19,6 @@ class PostsRepositoryImpl : PostsRepository {
                 post[title] = postDescription
             }
         }
-        transaction {
-
-        }
         val insertedPostRow = insertedRow?.resultedValues?.get(0) ?: throw IllegalStateException("Unable to create post.")
         return Post(insertedPostRow)
     }
