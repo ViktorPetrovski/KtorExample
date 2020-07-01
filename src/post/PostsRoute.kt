@@ -1,8 +1,10 @@
 package post
 
 import io.ktor.application.call
+import io.ktor.http.HttpStatusCode
 import io.ktor.response.respond
 import io.ktor.routing.Route
+import io.ktor.routing.delete
 import io.ktor.routing.get
 import io.ktor.routing.post
 import model.User
@@ -19,5 +21,11 @@ fun Route.post() {
         val postId = call.parameters["id"]!!.toInt()
         val repository = PostsRepositoryImpl()
         call.respond(repository.getPost(postId)!!)
+    }
+
+    delete("/post/{id}") {
+        val postId = call.parameters["id"]!!.toInt()
+        val repository = PostsRepositoryImpl()
+        call.respond(repository.deletePost(postId))
     }
 }

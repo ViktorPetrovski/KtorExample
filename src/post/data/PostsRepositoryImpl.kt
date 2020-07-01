@@ -1,6 +1,7 @@
 package post.data
 
 import database.Posts
+import org.jetbrains.exposed.sql.deleteWhere
 import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.statements.InsertStatement
 import post.model.Post
@@ -25,8 +26,10 @@ class PostsRepositoryImpl : PostsRepository {
         return Post(insertedPostRow)
     }
 
-    override suspend fun deletePost(postId: String) {
-        TODO("Not yet implemented")
+    override suspend fun deletePost(postId: Int) {
+        transaction {
+            Posts.deleteWhere { Posts.id.eq(postId) }
+        }
     }
 
     override suspend fun getPost(postId: Int) = transaction {
