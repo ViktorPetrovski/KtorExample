@@ -26,10 +26,6 @@ object DatabaseFactory {
 
         transaction {
             SchemaUtils.create(Posts)
-
-            for (city in Posts.selectAll()) {
-                println("${city[Posts.id]}: ${city[Posts.title]}")
-            }
         }
     }
 

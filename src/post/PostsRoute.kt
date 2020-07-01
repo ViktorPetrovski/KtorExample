@@ -1,4 +1,4 @@
-package home
+package post
 
 import io.ktor.application.call
 import io.ktor.response.respond

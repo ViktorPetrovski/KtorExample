@@ -2,7 +2,7 @@ package doc.ktor
 
 import database.DatabaseFactory
 import features
-import home.home
+import post.home
 import io.ktor.application.Application
 import io.ktor.routing.routing
 
