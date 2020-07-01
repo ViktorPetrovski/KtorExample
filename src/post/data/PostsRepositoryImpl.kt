@@ -1,12 +1,11 @@
 package post.data
-
-import database.Posts
+import database.table.Posts
 import org.jetbrains.exposed.sql.deleteWhere
 import org.jetbrains.exposed.sql.insert
+import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.statements.InsertStatement
 import post.data.model.Post
 import java.lang.IllegalStateException
-import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.transactions.transaction
 
 class PostsRepositoryImpl : PostsRepository {
