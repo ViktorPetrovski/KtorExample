@@ -1,6 +1,7 @@
 package post.data.model
 
-import database.Posts
+
+import database.table.Posts
 import org.jetbrains.exposed.sql.ResultRow
 
 data class Post(
