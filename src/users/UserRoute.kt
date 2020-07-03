@@ -2,8 +2,10 @@ package doc.ktor.users
 
 import doc.ktor.authentication.JwtService
 import doc.ktor.users.data.UsersRepository
+import doc.ktor.users.model.User
 import io.ktor.application.call
 import io.ktor.auth.authenticate
+import io.ktor.auth.authentication
 import io.ktor.http.HttpStatusCode
 import io.ktor.request.receive
 import io.ktor.response.respond
@@ -27,7 +29,8 @@ fun Route.users(
     }
     authenticate("jwt"){
         get("/users/me") {
-            call.respond(HttpStatusCode.OK)
+            val user = call.authentication.principal<User>()
+            call.respond(user.toString())
         }
     }
 }
