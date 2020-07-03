@@ -7,12 +7,10 @@ import java.io.Serializable
 
 data class User(
         val userId: Int,
-        val username: String,
-        val passwordHash: String
+        val username: String
 ): Serializable, Principal {
     constructor(row: ResultRow) : this(
             userId = row[Users.id],
-            username = row[Users.username],
-            passwordHash = row[Users.passwordHash]
+            username = row[Users.username]
     )
 }

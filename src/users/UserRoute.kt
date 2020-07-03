@@ -13,6 +13,7 @@ import io.ktor.routing.Route
 import io.ktor.routing.get
 import io.ktor.routing.post
 import org.apache.http.protocol.HTTP
+import java.lang.IllegalStateException
 
 data class NewUserRequest(val username: String, val password: String)
 
@@ -29,8 +30,8 @@ fun Route.users(
     }
     authenticate("jwt"){
         get("/users/me") {
-            val user = call.authentication.principal<User>()
-            call.respond(user.toString())
+            val user = call.authentication.principal<User>() ?: throw IllegalStateException("Invalid user")
+            call.respond(user)
         }
     }
 }
