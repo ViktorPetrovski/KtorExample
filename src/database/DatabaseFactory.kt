@@ -3,6 +3,7 @@ package database
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import database.table.Posts
+import doc.ktor.database.table.Users
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.jetbrains.exposed.sql.Database
@@ -25,6 +26,7 @@ object DatabaseFactory {
 
         transaction {
             SchemaUtils.create(Posts)
+            SchemaUtils.create(Users)
         }
     }
 
