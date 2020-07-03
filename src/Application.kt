@@ -45,14 +45,14 @@ fun Application.configureFeatures() {
     val jwtService = JwtService()
     install(Authentication) {
 
-        jwt {
+        jwt("jwt") {
             verifier(jwtService.verifier)
             realm = "Viktor Personal Server"
             validate { // 3
                 val payload = it.payload
                 val claim = payload.getClaim("id")
                 val claimString = claim.asInt()
-                val user = usersRepository.findUser(claimString) // 4
+                val user = usersRepository.findUser(claimString)
                 user
             }
         }
