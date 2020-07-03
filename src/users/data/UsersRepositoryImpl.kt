@@ -23,6 +23,6 @@ class UsersRepositoryImpl : UsersRepository {
     }
 
     override suspend fun findUser(userId: Int) = transaction {
-        Users.select { Users.userId.eq(userId) }.map { User(it) }.singleOrNull()
+        Users.select { Users.id.eq(userId) }.map { User(it) }.singleOrNull()
     }
 }

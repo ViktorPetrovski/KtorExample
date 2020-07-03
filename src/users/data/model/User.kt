@@ -11,7 +11,7 @@ data class User(
         val passwordHash: String
 ): Serializable, Principal {
     constructor(row: ResultRow) : this(
-            userId = row[Users.userId],
+            userId = row[Users.id],
             username = row[Users.username],
             passwordHash = row[Users.passwordHash]
     )

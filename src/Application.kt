@@ -1,11 +1,10 @@
 package doc.ktor
 
-import com.auth0.jwt.JWT
-import com.auth0.jwt.JWTVerifier
-import com.auth0.jwt.algorithms.Algorithm
 import database.DatabaseFactory
 import doc.ktor.authentication.JwtService
+import doc.ktor.authentication.hash
 import doc.ktor.users.data.UsersRepositoryImpl
+import doc.ktor.users.users
 import post.route.post
 import io.ktor.application.Application
 import io.ktor.application.install
@@ -21,9 +20,14 @@ fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
 fun Application.module(testing: Boolean = false) {
     DatabaseFactory.init()
+    val usersRepository = UsersRepositoryImpl()
+    val jwtService = JwtService()
+    val hashFunction = { s: String -> hash(s) }
+
     configureFeatures()
     routing {
         post(PostsRepositoryImpl())
+        users(jwtService, usersRepository, hashFunction)
     }
 }
 
@@ -54,10 +58,3 @@ fun Application.configureFeatures() {
         }
     }
 }
-
-private val algorithm = Algorithm.HMAC256("secret")
-private fun makeJwtVerifier(issuer: String, audience: String): JWTVerifier = JWT
-    .require(algorithm)
-    .withAudience(audience)
-    .withIssuer(issuer)
-    .build()
