@@ -34,7 +34,7 @@ fun Application.module(testing: Boolean = false) {
         post(PostsRepositoryImpl())
         users(jwtService, usersRepository, hashFunction)
         get("/"){
-            call.respond("Hello Heroku")
+            call.respond("Dali ima promeni?")
         }
     }
 }
