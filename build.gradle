@@ -17,6 +17,7 @@ group 'doc.ktor'
 version '0.0.1'
 mainClassName = "io.ktor.server.netty.EngineMain"
 apply plugin: 'com.github.johnrengelman.shadow'
+
 // This task will generate your fat JAR and put it in the ./build/libs/ directory
 shadowJar {
     manifest {
@@ -54,7 +55,3 @@ dependencies {
     implementation "mysql:mysql-connector-java:8.0.19"
     implementation "com.zaxxer:HikariCP:3.4.2"
 }
-
-
-task stage(dependsOn: ['build', 'clean'])
-build.mustRunAfter clean
