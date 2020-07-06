@@ -46,3 +46,6 @@ dependencies {
     implementation "mysql:mysql-connector-java:8.0.19"
     implementation "com.zaxxer:HikariCP:3.4.2"
 }
+
+task stage(dependsOn: ['build', 'clean'])
+build.mustRunAfter clean
