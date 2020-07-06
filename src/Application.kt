@@ -10,11 +10,13 @@ import io.ktor.application.Application
 import io.ktor.application.install
 import io.ktor.auth.Authentication
 import io.ktor.auth.jwt.jwt
+import io.ktor.features.CallLogging
 import io.ktor.features.ContentNegotiation
 import io.ktor.gson.gson
 import io.ktor.routing.routing
 import io.ktor.util.KtorExperimentalAPI
 import post.data.PostsRepositoryImpl
+import java.util.logging.Logger
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
@@ -39,6 +41,7 @@ fun Application.configureFeatures() {
             serializeNulls()
         }
     }
+    install(CallLogging)
     install(io.ktor.features.DefaultHeaders)
 
     val usersRepository = UsersRepositoryImpl()
