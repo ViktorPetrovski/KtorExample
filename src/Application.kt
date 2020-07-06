@@ -7,12 +7,15 @@ import doc.ktor.users.data.UsersRepositoryImpl
 import doc.ktor.users.users
 import post.route.post
 import io.ktor.application.Application
+import io.ktor.application.call
 import io.ktor.application.install
 import io.ktor.auth.Authentication
 import io.ktor.auth.jwt.jwt
 import io.ktor.features.CallLogging
 import io.ktor.features.ContentNegotiation
 import io.ktor.gson.gson
+import io.ktor.response.respond
+import io.ktor.routing.get
 import io.ktor.routing.routing
 import io.ktor.util.KtorExperimentalAPI
 import post.data.PostsRepositoryImpl
@@ -30,6 +33,9 @@ fun Application.module(testing: Boolean = false) {
     routing {
         post(PostsRepositoryImpl())
         users(jwtService, usersRepository, hashFunction)
+        get("/"){
+            call.respond("Hello Heroku")
+        }
     }
 }
 
