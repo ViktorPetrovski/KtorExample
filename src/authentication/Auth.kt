@@ -5,7 +5,7 @@ import javax.crypto.Mac
 import javax.crypto.spec.SecretKeySpec
 
 @KtorExperimentalAPI // 1
-val hashKey = hex(System.getenv("SECRET_KEY")) // 2
+val hashKey = hex("898748674728934843") // 2
 
 @KtorExperimentalAPI
 val hmacKey = SecretKeySpec(hashKey, "HmacSHA1") // 3

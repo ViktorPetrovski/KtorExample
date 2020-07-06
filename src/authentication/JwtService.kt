@@ -8,7 +8,7 @@ import java.util.*
 
 class JwtService {
     private val issuer = "todoServer"
-    private val jwtSecret = System.getenv("JWT_SECRET") // 1
+    private val jwtSecret = "898748674728934843" // 1
     private val algorithm = Algorithm.HMAC512(jwtSecret)
 
     // 2
